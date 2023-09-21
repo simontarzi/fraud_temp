@@ -310,7 +310,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 === Creating a Process Group
 
-. Open the NiFi Web UI, create a new Process Group and name it something like *Process Sensor Data*.
+. Open the NiFi Web UI, create a new Process Group and name it something like *Fraud Detection*.
 +
 image::images/fraud/lab4_nifi1_processgroup.png[width=800]
 
@@ -428,6 +428,8 @@ You will see the following warnings, these are because it is requiring a Standar
 image::images/fraud/lab4_nifi10_generators.png[width=300]
 
 . Right-click on the Process Group, select *Configure* and navigate to the *Controller Services* tab. You will notice that the Controller has been added to the list, click on the _lightning bolt_ icon (image:images/fraud/enable_icon.png[width=20]) to *enable* the *StandardHttpContextMap* Controller Service.
+
+. To go back to the previous canvas, on the bottom of the page find the Process Group list: "Nifi Flow - Fraud Detection - Generators" and click on *Fraud Detection*. 
 
 === Creating the Fraud Detection Nifi Flow
 
@@ -670,11 +672,12 @@ On the "Relationships" tab set "Automatically Terminate" and *terminate* on *suc
 
 . Connect the *Check Transaction Score* to the *Write to Kudu* processor and select the *to_kudu* relationship. 
 +
-Now the final NiFi flow should lokk similar to this flow: 
+Now the final NiFi flow should look similar to this flow: 
 
 +
 image::images/fraud/lab4_nifi19_final_overview.png[width=800]
 
+. Go back to the main *Fraud Detection* Process Group and hit right click on it and *Start*. 
 
 [[lab_5, Lab 5]]
 == Lab 5 - Create SSB Kafka data provider
@@ -1153,22 +1156,27 @@ In this lab we are going to import a previously created dahsboard to the Clouder
 image::images/fraud/lab11_dviz1_import.png[width=800]
 
 . Download the *fraud-demo-viz.json* and upload it on the UI (you can also drag&drop) and untick the *Check data table compatibility* checkbox and select *Import*. 
+
 +
 image::images/fraud/lab11_dviz2_import.png[width=800]
 
 . On the next page hit *ACCEPT AND IMPORT*.
+
 +
 image::images/fraud/lab11_dviz3_import.png[width=500]
 
 . On the top select *Visuals* and select the *Fraud demo* visual. 
+
 +
 image::images/fraud/lab11_dviz4_import.png[width=800]
 
 . Click *Edit* on the top left
+
 +
 image::images/fraud/lab11_dviz5.png[width=800]
 
 . Click on the blank space under the visuals and select *Settings* from the left pane
+
 +
 image::images/fraud/lab11_dviz6.png[width=800]
 
