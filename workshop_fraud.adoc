@@ -138,11 +138,13 @@ PARTITIONS:     10
 AVAILABILITY:   LOW
 CLEANUP POLICY: delete
 ----
-
++
 image::images/fraud/lab2_create_topic.png[width=800]
 
++
 In the Topics, scroll down to the transactions topic and click on the "Profile" icon, and observe the METRICS, DATA EXPLRER, CONFIG, LATENCY tabs. Later on we will come back when we are pushing data to the transactions Kafka topic and monitor it. 
 
++
 image::images/fraud/lab2_observe_topic.png[width=800]
 
 
