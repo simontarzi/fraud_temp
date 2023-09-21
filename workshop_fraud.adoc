@@ -1095,7 +1095,7 @@ image::images/fraud/lab10_cdsw1_welcome.png[width=800]
 . On the left pane select the *Applications*
 
 +
-image::images/fraud/lab10_cdsw2_applications.png
+image::images/fraud/lab10_cdsw2_applications.png[width=300]
 
 . Select the *Viz Server Application* and it will redirect you to the Cloudera Data Viz which is running inside the containerized environment. 
 
@@ -1160,12 +1160,12 @@ image::images/fraud/lab11_dviz2_import.png[width=800]
 . On the next page hit *ACCEPT AND IMPORT*.
 
 +
-image::images/fraud/lab11_dviz3_import.png
+image::images/fraud/lab11_dviz3_import.png[width=500]
 
 . On the top select *Visuals* and select the *Fraud demo* visual. 
 
 +
-image::images/fraud/lab11_dviz4_import.png
+image::images/fraud/lab11_dviz4_import.png[width=800]
 
 . Click *Edit* on the top left
 
