@@ -264,26 +264,26 @@ And modify all types to String type per column
 . Click on "Submit"
 . Wait until the jobs are finished, you can check them in the up right corner by clicking on the "Jobs" icon
 . Go back to the Editor - Impala and run the following query: 
-
++
 [source,sql]
 ----
 INSERT INTO default.customers
 SELECT * FROM default.hue__tmp_customers_temp
 ----
-
++
 and run 
-
++
 [source,sql]
 ----
 SELECT * FROM customers LIMIT 100;
 ----
-
++
 To validate that the data from the previous tables have been inserted into the Kudu table. 
-
++
 image::images/fraud/lab3_validate.png[width=800]
-
++
 You have finished this lab, you can try and run queries and check the Impala query plan by clicking to the code under the editor: 
-
++
 image::images/fraud/lab3_impala_explore.png[width=800]
 
 
@@ -340,8 +340,9 @@ Registry:  NiFi Registry
 Bucket:    FraudFlow
 Flow Name: FraudDetectionPG
 ----
+
 +
-image::images/fraud/lab4_nifi6_versioning.png
+image::images/fraud/lab4_nifi6_versioning.png[width=500]
 
 . Let's also enable processors in this Process Group to use schemas stored in Schema Registry. Right-click on the Process Group, select *Configure* and navigate to the *Controller Services* tab. Click the *`+`* icon and add a *HortonworksSchemaRegistry* service. After the service is added, click on the service's _cog_ icon (image:images/fraud/cog_icon.png[width=20]), go to the *Properties* tab and configure it with the following *Schema Registry URL* and click *Apply*.
 +
@@ -356,7 +357,6 @@ image::images/fraud/lab4_nifi7_controller.png[width=800]
 
 . Still on the *Controller Services* screen, let's add four additional services to handle the reading and writing of JSON records and one for RestLookup service. Click on the image:images/fraud/plus_button.png[width=25] button and add the following four services:
 ** *`JsonTreeReader`*, (this will be used for Kafka, QueryRecord and LookupRecord processors) with the following properties:
-
 +
 [source,yaml]
 ----
@@ -366,7 +366,6 @@ Schema Name:            ${schema.name} -> already set by default!
 ----
 
 ** *`JsonTreeReader`*, (this will be used to write to Kudu tables) with the following properties:
-
 +
 [source,yaml]
 ----
@@ -374,7 +373,6 @@ Schema Access Strategy: Infer schema
 ----
 
 ** *`JsonRecordSetWriter`*, (this will be used for Kafka and LookupRecord processors) with the following properties:
-
 +
 [source,yaml]
 ----
@@ -384,7 +382,6 @@ Schema Registry:        SchemaRegistry or HortonworksSchemaRegistry
 ----
 
 ** *`JsonRecordSetWriter`*, (this will be used for QueryRecord processor) with the following properties:
-
 +
 [source,yaml]
 ----
@@ -397,7 +394,6 @@ Compression Format:       none
 ----
 
 ** *`RestLookupService`*, with the following properties:
-
 +
 [source,yaml]
 ----
@@ -453,22 +449,22 @@ Port: #{input.port}
 +
 image::images/fraud/lab4_nifi12_updateattribute.png[width=800]
 
-
++
 In the new window add the following Property name: 
-
++
 [source,yaml]
 ----
 schema.name
 ----
-
++
 and in the next window add the following Value to it: 
-
++
 [source,yaml]
 ----
 #{schema.name}
 ----
-
-and clock *OK*. 
++
+and click *OK*. 
 
 +
 image::images/fraud/lab4_nifi13_addschemaname.png[width=800]
@@ -493,9 +489,9 @@ Record Writer: JsonRecordSetWriter - Use schema.name
 Lookup Service: RestLookupService
 Result RecordPath: /model_response
 ----
-
++
 and click on the *+* to add a new Properties with the following Values: 
-
++
 [source,yaml]
 ----
 mime.type:      toString('application/json', 'UTF-8')
@@ -702,7 +698,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 . Open SQL Stream Builder UI, login with the credentials and you will see the following page: 
 +
 image::images/fraud/lab5_ssbwelcome.png[width=800]
-
++
 Observe the UI, on the opening page you can see the Projects, the ssb_default is the all time default Team which serves as a starting point for all users. If users have access to the SSB then they can also create projects and invite others to join their Projects with specific rights. This tool has been built for collaboration and provides also Git integration for teamwork. 
 
 . Click "Open" on the ssb_default team. 
@@ -714,7 +710,7 @@ image::images/fraud/lab5_ssb1_open.png[width=800]
 
 +
 image::images/fraud/lab5_ssb2_kafkasource.png[width=800]
-
++
 Set the following: 
 
 +
@@ -724,7 +720,7 @@ Name: edge2ai-kafka
 Brokers: cdp.<HOST_IPADDRESS>.nip.io:9092
 Protocol: PLAINTEXT
 ----
-
++
 Click on *Validate* and on *Create* if Data Source is valid. 
 
 
@@ -755,8 +751,8 @@ We are going to add Kudu data connection, to be able to interact with Kudu table
 +
 image::images/fraud/lab6_ssb1_kuducatalog.png[width=800]
 
++
 Set the following: 
-
 +
 [source,yaml]
 ----
@@ -767,12 +763,13 @@ Database Filter: .*
 Table Filter: .*
 ----
 
-And clock on the *+* at the end of the row to add the Filter: 
++
+Click on the *+* at the end of the row to add the Filter: 
 
 +
 image::images/fraud/lab6_ssb2_filter.png[width=800]
 
-
++
 Click on *Validate* and on *Create* if Data Source is valid. 
 
 
@@ -929,7 +926,7 @@ function HAVETOKM(lat1,lon1,lat2,lon2) {
 }
 HAVETOKM($p0, $p1, $p2, $p3);  // this line must exist
 ----
-
++
 Click on *Save*
 
 +
@@ -952,7 +949,7 @@ function TO_KUDU_STRING(input){
 }
 TO_KUDU_STRING($p0);  // this line must exist
 ----
-
++
 Click on *Save*
 
 +
@@ -1044,17 +1041,18 @@ FROM frauds
 
 . Open the *Job settings* located at the upper right corner of the editor: 
 
++
 image::images/fraud/lab9_ssb1_jobsettings.png[width=800]
-
 image::images/fraud/lab9_ssb2_jobsettings.png[width=800]
 
++
 . On the UI you will see the Job settings, 
 ** set the *Sample Behaviour* to "Sample all messages" 
 ** *Sample Count* and *Sample Window Size* to 0 from 100
 ** turn on the *Restore From Savepoint* 
 
 . Go back to the editor and hit *Execute* and observe the output. You can also open the *Flink Dashboard* by clicking on the Flink Dashboard icon on the top of the editor. 
-
++
 image::images/fraud/lab9_ssb3_flink.png[width=800]
 
 . *Leave the job in running state.* 
@@ -1177,9 +1175,8 @@ image::images/fraud/lab11_dviz5.png[width=800]
 image::images/fraud/lab11_dviz6.png[width=800]
 
 . Navigate to *Map Server* in the list and copy your MAPBOX token to the correpsonding field which you can obtain from mapbox.com after registration and after click on the green *Save* icon. 
-
 +
-image::images/fraud/lab11_dviz7.png
+image::images/fraud/lab11_dviz7.png[width=300]
 
 . Click on *View* to go back from editing the visual. 
 
@@ -1195,7 +1192,7 @@ image::images/fraud/lab11_dviz8.png[width=800]
 . Select the data which you would like to explore and click on *New Visual*
 
 +
-image::images/fraud/lab11_dviz9.png
+image::images/fraud/lab11_dviz9.png[width=300]
 
 . On the top you can select the type of visual what you would like to use
 . On the right pane you can see the *Dimensions* and drag them to the *Visuals* box right next to it to the *Dimensions* fields. You can do the same with the *Measures* and if you would like to add properties, just click on the added *Dimensions* or *Measures* and on the right *Field Properties* will open where you can choose. 
