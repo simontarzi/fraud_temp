@@ -765,13 +765,13 @@ Table Filter: .*
 ----
 
 +
-Click on the *+* at the end of the row to add the Filter: 
+. Click on the *+* at the end of the row to add the Filter: 
 
 +
 image::images/fraud/lab6_ssb2_filter.png[width=800]
 
 +
-Click on *Validate* and on *Create* if Data Source is valid. 
+. Click on *Validate* and on *Create* if Data Source is valid. 
 
 
 
