@@ -438,7 +438,7 @@ In the following steps we are going to use different processors, configuring and
 . First for receiving the transaction drag the "ListenTCP" processor to the canvas: 
 
 +
-image::images/fraud/lab4_nifi11_listentcp.png
+image::images/fraud/lab4_nifi11_listentcp.png[width=800]
 
 . Right-click on the Processor and select *Configure* and on the *Settings* tab set the name to "Receive Transactions" and then navigate to the *Properties* tab and add the following: 
 
@@ -451,7 +451,7 @@ Port: #{input.port}
 . We need to tell NiFi which schema should be used to read and write the Sensor data. For this we'll use an _UpdateAttribute_ processor to add an attribute to the FlowFile indicating the schema name. Drag a new processor to the canvas, search for "UpdateAttribute" and hit *ADD*, right-click on the Processor and select *Configure* and on the *Settings* tab set the name to "Set Schema Name" and then navigate to the *Properties* tab and click on the *+* sign to add a new property
 
 +
-image::images/fraud/lab4_nifi12_updateattribute.png
+image::images/fraud/lab4_nifi12_updateattribute.png[width=800]
 
 
 In the new window add the following Property name: 
@@ -471,17 +471,17 @@ and in the next window add the following Value to it:
 and clock *OK*. 
 
 +
-image::images/fraud/lab4_nifi13_addschemaname.png
+image::images/fraud/lab4_nifi13_addschemaname.png[width=800]
 
 . Now connect to the processors by hovering with the mouse over to the Receive Transactions processors and you will see a logo in its center, drag it to the Set Schema Name processor: 
 
 +
-image::images/fraud/lab4_nifi14_createconnection.png
+image::images/fraud/lab4_nifi14_createconnection.png[width=300]
 
 . A new window will open, on the *Details* tab check the *For relationships* box to be checked. Hit *ADD*. You will see the following: 
 
 +
-image::images/fraud/lab4_nifi15_createconnection.png
+image::images/fraud/lab4_nifi15_createconnection.png[width=300]
 
 . We need to call our model to receive the prediction if the transaction is fraudulent or not, for this drag a new processor to the canvas, search for "LookupRecord" and hit *ADD*, right-click on the Processor and select *Configure* and on the *Settings* tab set the name to "Score Transactions" and then navigate to the *Properties* tab and set the following Values to the Properties:
 
@@ -496,6 +496,7 @@ Result RecordPath: /model_response
 
 and click on the *+* to add a new Properties with the following Values: 
 
++
 [source,yaml]
 ----
 mime.type:      toString('application/json', 'UTF-8')
@@ -508,13 +509,13 @@ request.method: toString('post', 'UTF-8')
 . During scoring, we have to take of the failed lookups and log them. For this create a new processors *LogAttribute*, name it: *Log Attribute* and create a connection between it and the *Score Transaction* processor, on the Create Connection page check the *For Relationships* only the "Failure" checkbox has been ticked and name it on the *Settings* pane to "failed_lookup". 
 
 +
-image::images/fraud/lab4_nifi16_routeonfailure.png
+image::images/fraud/lab4_nifi16_routeonfailure.png[width=300]
 
 
 Now the canvas should look like this: 
 
 +
-image::images/fraud/lab4_nifi17_overview.png
+image::images/fraud/lab4_nifi17_overview.png[width=800]
 
 . Now we are going to query the results of the lookup, and depending on the results of the queries we will publish the data to different Kafka topics and Kudu table. For this we are going to use the powerful *QueryRecord* Processor, drag it to the canvas and set it's name to "Check Transaction Score", on the Properties pane set the following Values to the Properties: 
 
@@ -589,6 +590,7 @@ In the following steps we are going to publish the results of the query to their
 . Create a new processor: *PublishKafkaRecord_2_6* with the following settings: 
 
 Settings Tab: 
+
 +
 [source,yaml]
 ----
@@ -596,6 +598,7 @@ Name: Publish to Kafka topic: transactions
 ----
 
 Properties Tab: 
+
 +
 [source,yaml]
 ----
@@ -610,13 +613,15 @@ SASL Mechanism: #{kafka.sasl.mechanism}
 
 On the "Relationships" tab set "Automatically Terminate" and *terminate* on *success* 
 
-image::images/fraud/lab4_nifi18_autoterminateonsuccess.png
++
+image::images/fraud/lab4_nifi18_autoterminateonsuccess.png[width=800]
 
 . Connect the *Check Transaction Score* to the *Publish to Kafka topic: transactions* processor and select the *flattened* relationship. 
 
 . Now again create a new processor: *PublishKafkaRecord_2_6* with the following settings: 
 
 Settings Tab: 
+
 +
 [source,yaml]
 ----
@@ -624,6 +629,7 @@ Name: Publish to Kafka topic: frauds
 ----
 
 Properties Tab: 
+
 +
 [source,yaml]
 ----
@@ -645,6 +651,7 @@ On the "Relationships" tab set "Automatically Terminate" and *terminate* on *suc
 
 
 Settings Tab: 
+
 +
 [source,yaml]
 ----
@@ -652,6 +659,7 @@ Name: Write to Kudu
 ----
 
 Properties Tab: 
+
 +
 [source,yaml]
 ----
@@ -663,11 +671,11 @@ Kudu Operation Type: UPSERT
 
 On the "Relationships" tab set "Automatically Terminate" and *terminate* on *success* 
 
-
 . Connect the *Check Transaction Score* to the *Write to Kudu* processor and select the *to_kudu* relationship. 
 
 Now the final NiFi flow should lokk similar to this flow: 
 
++
 image::images/fraud/lab4_nifi19_final_overview.png[width=800]
 
 
