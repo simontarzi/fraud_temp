@@ -416,7 +416,7 @@ image::images/fraud/lab4_nifi8_controller.png[width=800]
 
 === Uploading a previously created flow which generates the transaction data and handles the ML model requests
 
-. In this step we are going to upload the Data Generators process group from JSON flow definition. For this download the Generators.json to local computer, create new Process Group by dragging the icon the the editor and in the popup window select the Browse icon at the end of the Name field and open the downloaded Generators.json. 
+. In this step we are going to upload the Data Generators process group from JSON flow definition. For this download the link:Generators.json[Generators.json] to local computer, create new Process Group by dragging the icon the the editor and in the popup window select the Browse icon at the end of the Name field and open the downloaded link:Generators.json[Generators.json]. 
 
 +
 image::images/fraud/lab4_nifi9_uploadgenerators.png[width=300]
@@ -424,6 +424,7 @@ image::images/fraud/lab4_nifi9_uploadgenerators.png[width=300]
 +
 You will see the following warnings, these are because it is requiring a StandardHttPContextMap Controller:
 
++
 image::images/fraud/lab4_nifi10_generators.png[width=300]
 
 . Right-click on the Process Group, select *Configure* and navigate to the *Controller Services* tab. You will notice that the Controller has been added to the list, click on the _lightning bolt_ icon (image:images/fraud/enable_icon.png[width=20]) to *enable* the *StandardHttpContextMap* Controller Service.
