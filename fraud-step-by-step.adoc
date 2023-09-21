@@ -22,7 +22,7 @@ This demo uses link:https://account.mapbox.com/[MapBox] to show the distribution
 To enable this a MapBox token is required so that Cloudera DataViz can connect to the MapBox service.
 If you don't yet have a token, click on the MapBox link above, sign up for free and create a token for yourself.
 
-To deploy the full demo please SSH to your cluster host 
+To deploy the full demo with *skipping all the steps below*, please SSH to your cluster host 
 
 [source,shell]
 ----
@@ -77,11 +77,11 @@ image::images/fraud/diagram.png[width=800]
 [[lab_1, Lab 1]]
 == Lab 1 - Registering a schema in Schema Registry
 
-The transaction data is described by the schema in file `link:https://gist.githubusercontent.com/asdaraujo/e680557100b82d5e0004d7b9f4e3b4f7/raw/f7192cb27e61035fa26156881980342bf385fd2f/transaction.avsc`. In this lab we will register this schema in Schema Registry so that our flows in NiFi can refer to schema using an unified service. This will also allow us to evolve the schema in the future, if needed, keeping older versions under version control, so that existing flows and flowfiles will continue to work.
+The transaction data is described by the schema this  https://gist.githubusercontent.com/asdaraujo/e680557100b82d5e0004d7b9f4e3b4f7/raw/f7192cb27e61035fa26156881980342bf385fd2f/transaction.avsc[file]. In this lab we will register this schema in Schema Registry so that our flows in NiFi can refer to schema using an unified service. This will also allow us to evolve the schema in the future, if needed, keeping older versions under version control, so that existing flows and flowfiles will continue to work.
 
 . Go to the following URL, which contains the schema definition we'll use for this lab. Select all contents of the page and copy it.
 +
-`link:https://gist.githubusercontent.com/asdaraujo/e680557100b82d5e0004d7b9f4e3b4f7/raw/f7192cb27e61035fa26156881980342bf385fd2f/transaction.avsc, window="_blank"]`
+link: https://gist.githubusercontent.com/asdaraujo/e680557100b82d5e0004d7b9f4e3b4f7/raw/f7192cb27e61035fa26156881980342bf385fd2f/transaction.avsc[Schema]
 
 . In the Schema Registry Web UI, click the `+` sign to register a new schema.
 
@@ -119,7 +119,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 1
+/tmp/resources/reset-to-lab.sh fraud 2
 ----
 
 
@@ -162,7 +162,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 2
+/tmp/resources/reset-to-lab.sh fraud 3
 ----
 
 
@@ -246,8 +246,12 @@ TBLPROPERTIES ('kudu.num_tablet_replicas' = '1')
 +
 
 . On the HUE UI navigate to the left pane and open "Importer" and download the customers.csv from the git and drag&drop it to the importer UI.  
+
 +
-`link:./customers_temp.csv, window="_blank"]`
+file::customers_temp.csv
+
++
+[links](./customers_temp.csv)
 
 +
 image::images/fraud/lab3_importer.png[width=800]
@@ -305,7 +309,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 3
+/tmp/resources/reset-to-lab.sh fraud 4
 ----
 
 === Creating a Process Group
@@ -688,7 +692,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 4
+/tmp/resources/reset-to-lab.sh fraud 5
 ----
 
 === SQL Stream Builder
@@ -739,7 +743,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 5
+/tmp/resources/reset-to-lab.sh fraud 6
 ----
 
 We are going to add Kudu data connection, to be able to interact with Kudu tables from SSB directly. 
@@ -787,7 +791,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 6
+/tmp/resources/reset-to-lab.sh fraud 7
 ----
 
 In this lab we are going to create virtual tables which are serving as connectors to the sources, you will see how easy it is to create connection to external data sources. 
@@ -881,7 +885,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 7
+/tmp/resources/reset-to-lab.sh fraud 8
 ----
 
 In this lab we are going to add custom JavaScript dunction that we are going to use later on in our queries. Since our dataset has GEO coordinates and we need to measure the distance between coordinates we need to calculate Haversine distance between two geographical coordinates. Also we need a function for converting String to Kudu format. 
@@ -969,7 +973,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 8
+/tmp/resources/reset-to-lab.sh fraud 9
 ----
 
 In this lab we are going to create the Fraud analytics Job, to detect a fraudulent transaction, we will implement the following pattern:
@@ -1070,7 +1074,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 9
+/tmp/resources/reset-to-lab.sh fraud 10
 ----
 
 In this lab we are going to use Cloudera DataViz tool to establish connection with Impala to Kudu. 
@@ -1118,7 +1122,7 @@ image::images/fraud/lab10_dviz3_conn.png[width=800]
 
 
 [[lab_11, Lab 11]]
-== Lab 10 - Import DataViz visual and observe the dashboard
+== Lab 11 - Import DataViz visual and observe the dashboard
 
 To clean your environment and reset to the beginning of this lab, please SSH to your cluster
 
@@ -1133,7 +1137,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 [source,shell]
 ----
-/tmp/resources/reset-to-lab.sh fraud 10
+/tmp/resources/reset-to-lab.sh fraud 11
 ----
 
 In this lab we are going to import a previously created dahsboard to the Cloudera DataViz tool to visualize the fraudulent transactions. Later on if you have time try to add more queries and visualizations to the dashboard, exploring the dataset and the possibilities of this tool. 
