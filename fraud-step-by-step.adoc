@@ -246,15 +246,6 @@ TBLPROPERTIES ('kudu.num_tablet_replicas' = '1')
 
 . On the HUE UI navigate to the left pane and open "Importer" and download the customers.csv from the git and drag&drop it to the importer UI.  
 
-
-file::customers_temp.csv
-
-[links](./customers_temp.csv)
-
-[customers_temp.csv](/customers_temp.csv)
-[customers_temp.csv](./customers_temp.csv)
-[customers_temp.csv](customers_temp.csv)
-
 +
 image::images/fraud/lab3_importer.png[width=800]
 
