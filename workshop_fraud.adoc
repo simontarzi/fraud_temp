@@ -698,6 +698,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 . Open SQL Stream Builder UI, login with the credentials and you will see the following page: 
 +
 image::images/fraud/lab5_ssbwelcome.png[width=800]
+
 +
 Observe the UI, on the opening page you can see the Projects, the ssb_default is the all time default Team which serves as a starting point for all users. If users have access to the SSB then they can also create projects and invite others to join their Projects with specific rights. This tool has been built for collaboration and provides also Git integration for teamwork. 
 
