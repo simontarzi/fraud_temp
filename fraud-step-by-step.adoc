@@ -243,14 +243,12 @@ PARTITION BY HASH PARTITIONS 16
 STORED AS KUDU
 TBLPROPERTIES ('kudu.num_tablet_replicas' = '1')
 ----
-+
 
 . On the HUE UI navigate to the left pane and open "Importer" and download the customers.csv from the git and drag&drop it to the importer UI.  
 
-+
+
 file::customers_temp.csv
 
-+
 [links](./customers_temp.csv)
 
 [customers_temp.csv](/customers_temp.csv)
@@ -262,6 +260,7 @@ image::images/fraud/lab3_importer.png[width=800]
 
 . Proceed with clicking on "Next" at the bottom left on the page
 . Set the following: 
+
 +
 [source,yaml]
 ----
