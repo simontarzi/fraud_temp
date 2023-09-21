@@ -250,7 +250,7 @@ TBLPROPERTIES ('kudu.num_tablet_replicas' = '1')
 file::customers_temp.csv
 
 +
-[links](./customers_temp.csv)
+[link](./customers_temp.csv)
 
 +
 [customers_temp.csv](/customers_temp.csv)
