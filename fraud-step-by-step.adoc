@@ -419,7 +419,7 @@ image::images/fraud/lab4_nifi8_controller.png[width=800]
 . In this step we are going to upload the Data Generators process group from JSON flow definition. For this download the Generators.json to local computer, create new Process Group by dragging the icon the the editor and in the popup window select the Browse icon at the end of the Name field and open the downloaded Generators.json. 
 
 +
-image::images/fraud/lab4_nifi9_uploadgenerators.png[width=800]
+image::images/fraud/lab4_nifi9_uploadgenerators.png[width=auto]
 
 +
 You will see the following warnings, these are because it is requiring a StandardHttPContextMap Controller:
