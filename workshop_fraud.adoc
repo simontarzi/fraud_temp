@@ -280,12 +280,10 @@ SELECT * FROM customers LIMIT 100;
 
 To validate that the data from the previous tables have been inserted into the Kudu table. 
 
-+
 image::images/fraud/lab3_validate.png[width=800]
 
 You have finished this lab, you can try and run queries and check the Impala query plan by clicking to the code under the editor: 
 
-+
 image::images/fraud/lab3_impala_explore.png[width=800]
 
 
