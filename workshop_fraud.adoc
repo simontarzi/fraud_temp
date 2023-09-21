@@ -496,7 +496,6 @@ Result RecordPath: /model_response
 
 and click on the *+* to add a new Properties with the following Values: 
 
-+
 [source,yaml]
 ----
 mime.type:      toString('application/json', 'UTF-8')
@@ -511,7 +510,7 @@ request.method: toString('post', 'UTF-8')
 +
 image::images/fraud/lab4_nifi16_routeonfailure.png[width=300]
 
-
++
 Now the canvas should look like this: 
 
 +
@@ -526,7 +525,7 @@ Record Reader: JsonTreeReader - Use schema.name
 Record Writer: JsonRecordSetWriter - Inherit record schema
 Include Zero Record FlowFiles: false
 ----
-
++
 And add the following properties with the *+*:
 
 +
@@ -579,26 +578,26 @@ select
 from flowfile
 ----
 
++
 Now observe the queries, you can see how easy is to create queries and based on the output we will route the data to different sinks. In this step we are avoiding splitting the data to rows and creating individual flowfiles for each row and later on merge them together because it would lead to excessive resource usage and this can be done much more easier and faster with this processor. 
 
 . Connect the "Check Transaction Score" to the "Log Attribute" processor and select the "failure", name it on the Settings panel to "failed_query" and hit *ADD*. 
 
 . Connect the *Score Transaction* processor to the *Check Transaction Score* processor, relationship should be "success" and name it "lookup_output". 
-
++
 In the following steps we are going to publish the results of the query to their destination, for this we are going to create 3 processors, one will be a Kafka topic named transactions this will store the results of the flattened transaction, the second one will put the data to kudu (the result of the to_kudu query) and the third will be again putting the data to Kafka, but this time it will put the likely_fraud query output to the frauds topic. 
 
 . Create a new processor: *PublishKafkaRecord_2_6* with the following settings: 
 
++
 Settings Tab: 
-
 +
 [source,yaml]
 ----
 Name: Publish to Kafka topic: transactions
 ----
-
++
 Properties Tab: 
-
 +
 [source,yaml]
 ----
@@ -610,7 +609,7 @@ Use Transactions: false
 Security Protocol: #{kafka.security.protocol}
 SASL Mechanism: #{kafka.sasl.mechanism}
 ----
-
++
 On the "Relationships" tab set "Automatically Terminate" and *terminate* on *success* 
 
 +
@@ -619,7 +618,7 @@ image::images/fraud/lab4_nifi18_autoterminateonsuccess.png[width=800]
 . Connect the *Check Transaction Score* to the *Publish to Kafka topic: transactions* processor and select the *flattened* relationship. 
 
 . Now again create a new processor: *PublishKafkaRecord_2_6* with the following settings: 
-
++
 Settings Tab: 
 
 +
@@ -627,7 +626,7 @@ Settings Tab:
 ----
 Name: Publish to Kafka topic: frauds
 ----
-
++
 Properties Tab: 
 
 +
@@ -641,7 +640,7 @@ Use Transactions: false
 Security Protocol: #{kafka.security.protocol}
 SASL Mechanism: #{kafka.sasl.mechanism}
 ----
-
++
 On the "Relationships" tab set "Automatically Terminate" and *terminate* on *success* 
 
 
@@ -649,7 +648,7 @@ On the "Relationships" tab set "Automatically Terminate" and *terminate* on *suc
 
 . We are going to create a processor which loads the data to Kudu, for this create the *PutKudu* processor with the following settings:
 
-
++
 Settings Tab: 
 
 +
@@ -657,7 +656,7 @@ Settings Tab:
 ----
 Name: Write to Kudu
 ----
-
++
 Properties Tab: 
 
 +
@@ -668,11 +667,11 @@ Table Name: #{transaction_table}
 Record Reader: JsonTreeReader - Infer schema
 Kudu Operation Type: UPSERT
 ----
-
++
 On the "Relationships" tab set "Automatically Terminate" and *terminate* on *success* 
 
 . Connect the *Check Transaction Score* to the *Write to Kudu* processor and select the *to_kudu* relationship. 
-
++
 Now the final NiFi flow should lokk similar to this flow: 
 
 +
