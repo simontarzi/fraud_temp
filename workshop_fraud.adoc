@@ -265,7 +265,6 @@ And modify all types to String type per column
 . Wait until the jobs are finished, you can check them in the up right corner by clicking on the "Jobs" icon
 . Go back to the Editor - Impala and run the following query: 
 
-+
 [source,sql]
 ----
 INSERT INTO default.customers
@@ -278,12 +277,15 @@ and run
 ----
 SELECT * FROM customers LIMIT 100;
 ----
+
 To validate that the data from the previous tables have been inserted into the Kudu table. 
 
++
 image::images/fraud/lab3_validate.png[width=800]
 
 You have finished this lab, you can try and run queries and check the Impala query plan by clicking to the code under the editor: 
 
++
 image::images/fraud/lab3_impala_explore.png[width=800]
 
 
