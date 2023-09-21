@@ -243,15 +243,16 @@ PARTITION BY HASH PARTITIONS 16
 STORED AS KUDU
 TBLPROPERTIES ('kudu.num_tablet_replicas' = '1')
 ----
++
 
 . On the HUE UI navigate to the left pane and open "Importer" and download the link:customers_temp.csv[customers_temp.csv] from the git and drag&drop it to the importer UI.
 
 +
 image::images/fraud/lab3_importer.png[width=800]
 
+
 . Proceed with clicking on "Next" at the bottom left on the page
 . Set the following: 
-
 +
 [source,yaml]
 ----
@@ -451,7 +452,6 @@ image::images/fraud/lab4_nifi13_updateattribute.png
 
 In the new window add the following Property name: 
 
-+
 [source,yaml]
 ----
 schema.name
@@ -459,7 +459,6 @@ schema.name
 
 and in the next window add the following Value to it: 
 
-+
 [source,yaml]
 ----
 #{schema.name}
@@ -467,17 +466,14 @@ and in the next window add the following Value to it:
 
 and clock *OK*. 
 
-+
 image::images/fraud/lab4_nifi13_addschemaname.png
 
 . Now connect to the processors by hovering with the mouse over to the Receive Transactions processors and you will see a logo in its center, drag it to the Set Schema Name processor: 
 
-+
 image::images/fraud/lab4_nifi14_createconnection.png
 
 . A new window will open, on the *Details* tab check the *For relationships* box to be checked. Hit *ADD*. You will see the following: 
 
-+
 image::images/fraud/lab4_nifi15_createconnection.png
 
 . We need to call our model to receive the prediction if the transaction is fraudulent or not, for this drag a new processor to the canvas, search for "LookupRecord" and hit *ADD*, right-click on the Processor and select *Configure* and on the *Settings* tab set the name to "Score Transactions" and then navigate to the *Properties* tab and set the following Values to the Properties:
@@ -493,7 +489,6 @@ Result RecordPath: /model_response
 
 and click on the *+* to add a new Properties with the following Values: 
 
-+
 [source,yaml]
 ----
 mime.type:      toString('application/json', 'UTF-8')
