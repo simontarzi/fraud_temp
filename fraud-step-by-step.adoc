@@ -448,7 +448,7 @@ Port: #{input.port}
 . We need to tell NiFi which schema should be used to read and write the Sensor data. For this we'll use an _UpdateAttribute_ processor to add an attribute to the FlowFile indicating the schema name. Drag a new processor to the canvas, search for "UpdateAttribute" and hit *ADD*, right-click on the Processor and select *Configure* and on the *Settings* tab set the name to "Set Schema Name" and then navigate to the *Properties* tab and click on the *+* sign to add a new property
 
 +
-image::images/fraud/lab4_nifi13_updateattribute.png
+image::images/fraud/lab4_nifi12_updateattribute.png
 
 
 In the new window add the following Property name: 
@@ -467,14 +467,17 @@ and in the next window add the following Value to it:
 
 and clock *OK*. 
 
++
 image::images/fraud/lab4_nifi13_addschemaname.png
 
 . Now connect to the processors by hovering with the mouse over to the Receive Transactions processors and you will see a logo in its center, drag it to the Set Schema Name processor: 
 
++
 image::images/fraud/lab4_nifi14_createconnection.png
 
 . A new window will open, on the *Details* tab check the *For relationships* box to be checked. Hit *ADD*. You will see the following: 
 
++
 image::images/fraud/lab4_nifi15_createconnection.png
 
 . We need to call our model to receive the prediction if the transaction is fraudulent or not, for this drag a new processor to the canvas, search for "LookupRecord" and hit *ADD*, right-click on the Processor and select *Configure* and on the *Settings* tab set the name to "Score Transactions" and then navigate to the *Properties* tab and set the following Values to the Properties:
