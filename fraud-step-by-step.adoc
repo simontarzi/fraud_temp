@@ -273,7 +273,6 @@ SELECT * FROM default.hue__tmp_customers_temp
 
 and run 
 
-+
 [source,sql]
 ----
 SELECT * FROM customers LIMIT 100;
