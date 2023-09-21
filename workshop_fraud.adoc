@@ -326,7 +326,7 @@ image::images/fraud/lab4_nifi3_controller.png[width=800]
 
 . Go to the *NiFi Registry* Web UI, add a bucket by clicking on the spanner icon on the top right corner and hit "NEW BUCKET"  for storing the Fraud Detection flow we're about to build'. Call it `FraudFlow`:
 +
-image::images/fraud/lab4_nifi4_registry.png[width=800]
+image::images/fraud/lab4_nifi4_registry.png[width=300]
 
 +
 image::images/fraud/lab4_nifi5_registry.png[width=300]
