@@ -1153,27 +1153,22 @@ In this lab we are going to import a previously created dahsboard to the Clouder
 image::images/fraud/lab11_dviz1_import.png[width=800]
 
 . Download the *fraud-demo-viz.json* and upload it on the UI (you can also drag&drop) and untick the *Check data table compatibility* checkbox and select *Import*. 
-
 +
 image::images/fraud/lab11_dviz2_import.png[width=800]
 
 . On the next page hit *ACCEPT AND IMPORT*.
-
 +
 image::images/fraud/lab11_dviz3_import.png[width=500]
 
 . On the top select *Visuals* and select the *Fraud demo* visual. 
-
 +
 image::images/fraud/lab11_dviz4_import.png[width=800]
 
 . Click *Edit* on the top left
-
 +
 image::images/fraud/lab11_dviz5.png[width=800]
 
 . Click on the blank space under the visuals and select *Settings* from the left pane
-
 +
 image::images/fraud/lab11_dviz6.png[width=800]
 
