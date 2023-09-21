@@ -447,6 +447,7 @@ Port: #{input.port}
 
 . We need to tell NiFi which schema should be used to read and write the Sensor data. For this we'll use an _UpdateAttribute_ processor to add an attribute to the FlowFile indicating the schema name. Drag a new processor to the canvas, search for "UpdateAttribute" and hit *ADD*, right-click on the Processor and select *Configure* and on the *Settings* tab set the name to "Set Schema Name" and then navigate to the *Properties* tab and click on the *+* sign to add a new property
 
++
 image::images/fraud/lab4_nifi13_updateattribute.png
 
 
