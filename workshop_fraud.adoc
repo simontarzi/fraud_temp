@@ -124,7 +124,7 @@ NOTE: The command below will undo everything done in the cluster in previous wor
 
 
 
-In this lab, you will access the SMM and create a topic called ítransactions. 
+In this lab, you will access the SMM and create a topic called *transactions*. 
 
 . Open the Streams Messaging Manager UI
 . On the left pane select "Topics"
@@ -617,7 +617,7 @@ image::images/fraud/lab4_nifi18_autoterminateonsuccess.png[width=800]
 
 . Connect the *Check Transaction Score* to the *Publish to Kafka topic: transactions* processor and select the *flattened* relationship. 
 
-. Now again create a new processor: *PublishKafkaRecord_2_6* with the following settings: 
+. If you publish Kafka Record in NiFi to a non-existing topic, it will be created, we are going to use this feature and at the end of this lab we are going to observe the topics in *SMM*, so in this step create a new processor: *PublishKafkaRecord_2_6* with the following settings: 
 +
 Settings Tab: 
 
@@ -678,6 +678,18 @@ Now the final NiFi flow should look similar to this flow:
 image::images/fraud/lab4_nifi19_final_overview.png[width=800]
 
 . Go back to the main *Fraud Detection* Process Group and hit right click on it and *Start*. 
+
+. Now open *SMM* and on the left pane click *Topics* and search for *transactions* and also *fraudulent_txn*. 
+
+. Click on *Profile*
+
++
+image::images/fraud/lab4_smm1.png[width=800]
+
+. Select the tabs on the top, *Metrics* are for giving us an overview about the producers and consumers together with the information of partitions and data in and out gauge. *Data Explorer* lets us view the actual data in the topic, on *Configs* you can see the configuration of the topic and the selected availability option, cleanup policy. 
+
++
+image::images/fraud/lab4_smm2.png[width=800]
 
 [[lab_5, Lab 5]]
 == Lab 5 - Create SSB Kafka data provider
